@@ -1,0 +1,10 @@
+review_id,product_id,source_id,rating,text
+R01,aeromini-demo-product,SRC-REVIEWS,5,本体が小さいので置き場所を決めやすかった。
+R02,aeromini-demo-product,SRC-REVIEWS,4,操作はわかりやすい。説明書の文字がもう少し大きいと助かる。
+R03,aeromini-demo-product,SRC-REVIEWS,3,音は気になる時間があった。
+R04,aeromini-demo-product,SRC-REVIEWS,5,前からフィルターを交換できる点がよかった。
+R05,aeromini-demo-product,SRC-REVIEWS,4,サイズを測ってから購入した。
+R06,aeromini-demo-product,SRC-REVIEWS,2,設定で迷った。説明書に手順の写真がほしい。
+R07,aeromini-demo-product,SRC-REVIEWS,4,お手入れの流れがわかった。
+R08,aeromini-demo-product,SRC-REVIEWS,,まだ使い始めなので音や効果は判断できない。
+R01,aeromini-demo-product,SRC-REVIEWS,5,本体が小さいので置き場所を決めやすかった。

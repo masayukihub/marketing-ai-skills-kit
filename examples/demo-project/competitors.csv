@@ -1,0 +1,3 @@
+model,brand,target_hypothesis,source_id,status
+Demo Alternative A,Fictional Research Brand A,比較時に寸法を重視する,SRC-COMP,synthetic_internal_only
+Demo Alternative B,Fictional Research Brand B,メンテナンス方法を比較する,SRC-COMP,synthetic_internal_only

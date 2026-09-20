@@ -1,0 +1,315 @@
+{
+  "schema_version": "1.0",
+  "project_id": "aeromini-demo",
+  "synthetic": true,
+  "market": "JP",
+  "brand": {
+    "name": "Aero Demo",
+    "company_name": "Aero Demo Company — fictional",
+    "brand_promise": "使う人に、わかりやすく。",
+    "status": "demo_only"
+  },
+  "product": {
+    "id": "aeromini-demo-product",
+    "name": "AeroMini 空気清浄機（架空デモ）"
+  },
+  "sources": [
+    {
+      "id": "SRC-DEMO",
+      "path": "product-brief.md",
+      "kind": "synthetic",
+      "status": "fixture",
+      "verified_at": null
+    },
+    {
+      "id": "SRC-REVIEWS",
+      "path": "reviews.csv",
+      "kind": "synthetic",
+      "status": "fixture",
+      "verified_at": null
+    },
+    {
+      "id": "SRC-COMP",
+      "path": "competitors.csv",
+      "kind": "synthetic",
+      "status": "fixture",
+      "verified_at": null
+    },
+    {
+      "id": "SRC-CAMPAIGN",
+      "path": "campaign.csv",
+      "kind": "synthetic",
+      "status": "fixture",
+      "verified_at": null
+    },
+    {
+      "id": "SRC-CREATORS",
+      "path": "creators.csv",
+      "kind": "synthetic",
+      "status": "fixture",
+      "verified_at": null
+    }
+  ],
+  "facts": [
+    {
+      "id": "F-01",
+      "field": "width",
+      "value": 210,
+      "unit": "mm",
+      "source_id": "SRC-DEMO",
+      "evidence_location": "fixture specs / width",
+      "status": "confirmed"
+    },
+    {
+      "id": "F-02",
+      "field": "fan_levels",
+      "value": 3,
+      "unit": "levels",
+      "source_id": "SRC-DEMO",
+      "evidence_location": "fixture specs / fan_levels",
+      "status": "confirmed"
+    },
+    {
+      "id": "F-03",
+      "field": "filter_access",
+      "value": "front",
+      "source_id": "SRC-DEMO",
+      "evidence_location": "fixture specs / filter_access",
+      "status": "confirmed"
+    },
+    {
+      "id": "F-04",
+      "field": "noise_db",
+      "value": null,
+      "unit": "dB",
+      "source_id": null,
+      "evidence_location": null,
+      "status": "unknown"
+    },
+    {
+      "id": "F-05",
+      "field": "msrp_jpy",
+      "value": null,
+      "unit": "JPY",
+      "source_id": null,
+      "evidence_location": null,
+      "status": "unknown"
+    }
+  ],
+  "claims": [
+    {
+      "id": "C-01",
+      "text": "幅21cmのコンパクト設計。",
+      "fact_ids": [
+        "F-01"
+      ],
+      "source_id": "SRC-DEMO",
+      "status": "demo_only",
+      "market": "JP"
+    },
+    {
+      "id": "C-02",
+      "text": "風量は3段階から選べます。",
+      "fact_ids": [
+        "F-02"
+      ],
+      "source_id": "SRC-DEMO",
+      "status": "demo_only",
+      "market": "JP"
+    },
+    {
+      "id": "C-03",
+      "text": "前面からフィルターを取り出せます。",
+      "fact_ids": [
+        "F-03"
+      ],
+      "source_id": "SRC-DEMO",
+      "status": "demo_only",
+      "market": "JP"
+    },
+    {
+      "id": "C-04",
+      "text": "静音性能は未確認。",
+      "fact_ids": [
+        "F-04"
+      ],
+      "source_id": "SRC-DEMO",
+      "status": "draft",
+      "market": "JP"
+    }
+  ],
+  "state": {
+    "state_as_of": null,
+    "freshness_days": 30,
+    "blockers": [
+      "Official assets not supplied",
+      "Price unknown",
+      "Noise performance unknown",
+      "No external publication approval"
+    ],
+    "next_action": "Review the page sequence and replace placeholders with rights-cleared assets."
+  },
+  "creator_criteria": {
+    "platform": "YouTube",
+    "followers_min": 10000,
+    "followers_max": 100000,
+    "minimum_topic_fit": 0.5
+  },
+  "edm": {
+    "subject": "置き場所から考える、空気清浄機選び。",
+    "preheader": "コンパクトなサイズと、使い方を確認。",
+    "headline": "毎日の使いやすさを、ひとつずつ。",
+    "cta_label": "製品情報を見る",
+    "cta_url": null
+  },
+  "page_units": [
+    {
+      "id": "G01",
+      "section": "gallery",
+      "consumer_question": "これはどんな製品？",
+      "headline": "AeroMini 空気清浄機",
+      "support": "商品・付属品を確認。",
+      "claim_ids": [],
+      "visual_proof": "Official product-only shot. No invented accessories or text inside generated photography.",
+      "asset_path": null,
+      "asset_rights": "not_provided",
+      "copy_status": "draft"
+    },
+    {
+      "id": "G02",
+      "section": "gallery",
+      "consumer_question": "どこに置ける？",
+      "headline": "幅21cmのコンパクト設計。",
+      "support": "設置前に寸法を確認しましょう。",
+      "claim_ids": [
+        "C-01"
+      ],
+      "visual_proof": "Use approved dimension guides and an honest scene scale; a nice room alone does not prove size.",
+      "asset_path": null,
+      "asset_rights": "not_provided",
+      "copy_status": "draft"
+    },
+    {
+      "id": "G03",
+      "section": "gallery",
+      "consumer_question": "操作はわかりやすい？",
+      "headline": "風量は3段階から。",
+      "support": "使い方に合わせて選択。",
+      "claim_ids": [
+        "C-02"
+      ],
+      "visual_proof": "Show the real controls from an approved product image, not an invented app screen.",
+      "asset_path": null,
+      "asset_rights": "not_provided",
+      "copy_status": "draft"
+    },
+    {
+      "id": "G04",
+      "section": "gallery",
+      "consumer_question": "お手入れは？",
+      "headline": "前面からフィルター交換。",
+      "support": "手順と必要なスペースを確認。",
+      "claim_ids": [
+        "C-03"
+      ],
+      "visual_proof": "Show the actual opening and removal direction using supplied photos.",
+      "asset_path": null,
+      "asset_rights": "not_provided",
+      "copy_status": "draft"
+    },
+    {
+      "id": "A01",
+      "section": "aplus",
+      "consumer_question": "なぜこの製品？",
+      "headline": "置き場所と、使い方から。",
+      "support": "仕様を暮らしに結びつけて比較する。",
+      "claim_ids": [],
+      "visual_proof": "Show placement context and clearance. Do not imply verified cleaning performance.",
+      "asset_path": null,
+      "asset_rights": "not_provided",
+      "copy_status": "draft"
+    },
+    {
+      "id": "A02",
+      "section": "aplus",
+      "consumer_question": "どのように使う？",
+      "headline": "操作の流れを確認。",
+      "support": "3段階の風量を選択。",
+      "claim_ids": [
+        "C-02"
+      ],
+      "visual_proof": "A step-by-step diagram based on confirmed controls; no fabricated mechanism.",
+      "asset_path": null,
+      "asset_rights": "not_provided",
+      "copy_status": "draft"
+    },
+    {
+      "id": "A03",
+      "section": "aplus",
+      "consumer_question": "交換手順を知りたい",
+      "headline": "前面アクセスで手順を確認。",
+      "support": "フィルター交換の前に取扱説明書を確認。",
+      "claim_ids": [
+        "C-03"
+      ],
+      "visual_proof": "Match each step to an official source and show actual access space.",
+      "asset_path": null,
+      "asset_rights": "not_provided",
+      "copy_status": "draft"
+    },
+    {
+      "id": "B01",
+      "section": "brand",
+      "consumer_question": "どんなブランド？",
+      "headline": "使う人に、わかりやすく。",
+      "support": "これは架空ブランドのコンセプト例です。",
+      "claim_ids": [],
+      "visual_proof": "Brand values need specific examples; avoid fake awards, customer counts and ecosystem links.",
+      "asset_path": null,
+      "asset_rights": "not_provided",
+      "copy_status": "draft"
+    },
+    {
+      "id": "S01",
+      "section": "comparison",
+      "consumer_question": "どのモデルが合う？",
+      "headline": "自分の置き場所で選ぶ。",
+      "support": "同じブランドのモデルを用途から比較。",
+      "claim_ids": [],
+      "visual_proof": "Same-brand table; show recommended user and fit before specifications.",
+      "asset_path": null,
+      "asset_rights": "not_provided",
+      "copy_status": "draft"
+    },
+    {
+      "id": "Q01",
+      "section": "faq",
+      "consumer_question": "購入前の確認点は？",
+      "headline": "未確認の情報も、見える状態に。",
+      "support": "価格・騒音性能・正式素材は未確認です。",
+      "claim_ids": [],
+      "visual_proof": "Readable native FAQ, not tiny text baked into a raster.",
+      "asset_path": null,
+      "asset_rights": "not_provided",
+      "copy_status": "draft"
+    }
+  ],
+  "series_comparison": [
+    {
+      "brand": "Aero Demo",
+      "name": "AeroMini（架空）",
+      "recommended_for": "設置幅を確認したい方",
+      "home_fit": "採寸後に判断",
+      "key_difference": "幅21cm / 前面フィルター",
+      "source_id": "SRC-DEMO"
+    },
+    {
+      "brand": "Aero Demo",
+      "name": "AeroStandard（架空）",
+      "recommended_for": "本体寸法を比較したい方",
+      "home_fit": "採寸後に判断",
+      "key_difference": "幅30cm / 4段階風量（架空設定）",
+      "source_id": "SRC-DEMO"
+    }
+  ]
+}

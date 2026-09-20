@@ -1,0 +1,24 @@
+{
+  "name": "marketing-ai-skills-kit",
+  "version": "0.1.0-rc2",
+  "python": ">=3.10",
+  "skills": [
+    "jp-commerce-insights",
+    "jp-commerce-content",
+    "jp-marketing-campaign",
+    "jp-edm",
+    "influencer-marketing"
+  ],
+  "required_files": [
+    "kit/common.py",
+    "kit/truth.py",
+    "kit/context.py",
+    "kit/reviews.py",
+    "kit/operations.py",
+    "kit/creative.py",
+    "scripts/run.py"
+  ],
+  "local_file_adapter": true,
+  "network_calls_in_demo": false,
+  "automatic_publication": false
+}

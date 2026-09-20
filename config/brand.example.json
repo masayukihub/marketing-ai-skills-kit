@@ -1,0 +1,9 @@
+{
+  "brand_name": "Your Brand",
+  "company_name": "Your Company",
+  "market": "JP",
+  "internal_language": "zh-CN",
+  "consumer_language": "ja-JP",
+  "source_adapter": "local",
+  "automatic_publication": false
+}

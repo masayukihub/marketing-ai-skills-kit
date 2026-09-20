@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "project_id": "my-product",
+  "synthetic": false,
+  "market": "JP",
+  "brand": {
+    "name": "Your Brand",
+    "company_name": "Your Company"
+  },
+  "product": {
+    "id": "my-product",
+    "name": "Your Product"
+  },
+  "sources": [],
+  "facts": [],
+  "claims": [],
+  "page_units": [],
+  "series_comparison": [],
+  "state": {
+    "state_as_of": null,
+    "freshness_days": 30,
+    "blockers": [
+      "Evidence and assets required"
+    ],
+    "next_action": "Register local sources and draft claims."
+  }
+}

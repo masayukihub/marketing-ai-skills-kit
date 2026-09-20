@@ -1,0 +1,4 @@
+row_id,channel,spend,impressions,clicks,orders,revenue,currency,tax_basis,attribution_window,period,source_id
+M01,Search,12000,10000,200,10,40000,JPY,tax_inclusive,synthetic_7d,fixture_period,SRC-CAMPAIGN
+M02,Creator,8000,20000,100,4,16000,JPY,tax_inclusive,synthetic_7d,fixture_period,SRC-CAMPAIGN
+M03,Email,0,1000,40,2,8000,JPY,tax_inclusive,synthetic_7d,fixture_period,SRC-CAMPAIGN

@@ -1,0 +1,18 @@
+# All real user data and runtime artifacts stay local.
+outputs/
+projects/
+private-runtime/
+config/brand.local.json
+.env
+.env.*
+!.env.example
+.agents/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+build/
+dist/
+*.log
+.DS_Store
+Thumbs.db

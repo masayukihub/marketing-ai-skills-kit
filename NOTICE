@@ -1,0 +1,9 @@
+This distribution is a newly written, local-first implementation of reusable marketing workflows requested by the repository maintainer.
+
+No original company project records, private source exports, official product images, paid fonts, account configuration, pre-existing Git history or third-party runtime implementation is bundled.
+
+The workflow concepts were generalized; this is not a byte-for-byte export of another workspace and does not claim full runtime equivalence with that workspace.
+
+Any third-party names or platforms mentioned describe interoperability targets only, not endorsement. Synthetic brands and records are fixtures, not research evidence.
+
+The MIT license applies to this distribution's newly authored code, documentation and synthetic fixtures. It does not grant rights to employer-owned or third-party materials subsequently added by users. Maintainers must confirm publication rights before making a repository public.
