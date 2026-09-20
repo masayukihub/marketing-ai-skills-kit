@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0-rc2 — candidate
+
+- Extended jp-edm with series planning, reusable modules, shared footer, subject options and structural history records.
+- Added --task edm-series: per-email HTML, matrix, review CSV, dependency-scoped impact and review-only comment proposals. Removed emails are visibly superseded.
+- Added optional full-email visual inventory checks with explicit pixel/provenance/approval limits. No model, shared website or ESP integration added.
+- Added a synthetic multi-email demo and regressions. No private runtime, brand templates or business data imported. Single-email EDM and launch remain compatible.
+
 ## 0.2.0-rc1 — candidate, not publicly released
 
 - Added a launch task composing Amazon and EDM from one source-linked project, with a Chinese human-review homepage.

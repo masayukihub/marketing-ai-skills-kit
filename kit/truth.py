@@ -109,6 +109,9 @@ def load_project(root: Path) -> dict:
             raise ValueError('Action requires text, priority and an explicit safety kind')
         if any(b not in bids for b in a.get('blocked_by', [])):
             raise ValueError('Action references unknown blocker')
+    if 'edm_series' in data:
+        from .email_series import validate_series
+        validate_series(data)
     return data
 
 def claim_usable(claim: dict, project: dict, as_of: date) -> bool:

@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "project_id": "edm-series-demo",
+  "synthetic": true,
+  "market": "JP",
+  "brand": {"name": "Paperlight Demo", "company_name": "Paperlight Demo — fictional"},
+  "product": {"id": "notebook-demo", "name": "Paperlight ノート（架空）"},
+  "sources": [
+    {"id": "SRC-SPEC", "path": "source.md", "kind": "synthetic", "status": "fixture"},
+    {"id": "SRC-HISTORY", "path": "history.md", "kind": "synthetic", "status": "draft"}
+  ],
+  "facts": [{"id": "F-PAGES", "field": "pages", "value": 80, "status": "confirmed", "source_id": "SRC-SPEC", "evidence_location": "Synthetic definition"}],
+  "claims": [{"id": "C-PAGES", "text": "80ページのノート。", "fact_ids": ["F-PAGES"], "source_id": "SRC-SPEC", "status": "demo_only", "market": "JP"}],
+  "state": {"state_as_of": null, "freshness_days": 30, "blockers": [{"id": "REAL-ASSETS", "text": "本例没有正式图片、价格、发售日期或发送批准。", "tasks": ["edm"]}]},
+  "reviews": [],
+  "edm_series": {
+    "modules": [
+      {"id": "intro", "kind": "hero", "headline": "考えを書き留める、一冊を。", "body": "80ページのノート。まずは仕様を確認して、自分の使い方を考えてみませんか。", "claim_ids": ["C-PAGES"], "requires_asset": true, "visual_brief": "Authorized notebook image with editable type; do not invent binding or paper performance.", "inheritance": {"source_id": "SRC-HISTORY", "locator": "Opening responsibility", "structure_used": "One reader question, one product introduction, then evidence.", "excluded_content": "Old price, dates, links and performance language are not inherited."}},
+      {"id": "idea", "kind": "body", "headline": "思いつきを、まず一行。", "body": "買い物のメモ、読みたい本、ふと思いついたこと。使い方を想像するための例です。", "copy_kinds": {"headline": "non_factual", "body": "non_factual"}},
+      {"id": "check", "kind": "proof", "headline": "買う前に、確認したいこと。", "body": "ページ数は80。サイズ、紙の仕様、価格、販売時期は未確認です。", "claim_ids": ["C-PAGES"]},
+      {"id": "details", "kind": "cta", "body": "仕様を確認してから、選びましょう。", "cta_label": "仕様を見る", "cta_url": "https://example.com/notebook-demo", "copy_kinds": {"body": "non_factual", "cta_label": "non_factual", "cta_url": "non_factual"}},
+      {"id": "shared-footer", "kind": "footer", "body": "Paperlight Demo（架空）。これは内部確認用です。会社住所・配信停止・問い合わせ先は未設定です。", "copy_kinds": {"body": "non_factual"}}
+    ],
+    "emails": [
+      {"id": "discover", "stage": "introduction", "audience": "既存読者（架空）", "purpose": "仕様を確認する", "purchase_reason": "商品の基本を理解して選ぶ", "planned_for": null, "module_ids": ["intro", "details", "shared-footer"], "selected_subject": "basic", "subject_options": [
+        {"id": "basic", "subject": "80ページのノートを、使い方から選ぶ。", "preheader": "まずは仕様と未確認の条件をご案内。", "claim_ids": ["C-PAGES"]},
+        {"id": "scene", "subject": "書き留めたいこと、ありますか。", "preheader": "一冊の使い方を考えるところから。", "copy_kinds": {"subject": "non_factual", "preheader": "non_factual"}},
+        {"id": "choice", "subject": "ノート選びで確認したいこと。", "preheader": "仕様を見て、自分に合うか考えてみませんか。", "copy_kinds": {"subject": "non_factual", "preheader": "non_factual"}}
+      ]},
+      {"id": "imagine", "stage": "use-case", "audience": "既存読者（架空）", "purpose": "用途を考える", "purchase_reason": "自分の日常に合う用途を見つける", "planned_for": null, "module_ids": ["idea", "details", "shared-footer"], "selected_subject": "scene", "subject_options": [
+        {"id": "scene", "subject": "思いついたことを、一行から。", "preheader": "暮らしの中で使う場面を考えてみましょう。", "copy_kinds": {"subject": "non_factual", "preheader": "non_factual"}}
+      ]},
+      {"id": "compare", "stage": "selection-guide", "audience": "既存読者（架空）", "purpose": "購入前の不明点を確認する", "purchase_reason": "条件の不足を把握して検討する", "planned_for": null, "module_ids": ["check", "details", "shared-footer"], "selected_subject": "check", "subject_options": [
+        {"id": "check", "subject": "選ぶ前に、仕様をもう一度。", "preheader": "ページ数と、まだ確認が必要な条件。", "claim_ids": ["C-PAGES"]}
+      ]}
+    ],
+    "visuals": [],
+    "comments": []
+  }
+}

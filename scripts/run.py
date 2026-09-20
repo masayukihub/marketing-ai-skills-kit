@@ -16,6 +16,7 @@ from kit.reviews import summarize
 from kit.operations import campaign_report, creator_report
 from kit.creative import page_report, edm_html, shell, esc
 from kit.launch import assemble
+from kit.email_series import build_series
 
 
 def check_output(out: Path, project_dir: Path, project_id: str, task: str) -> None:
@@ -61,6 +62,10 @@ def run(task: str, project_dir: Path, out: Path, scope: str, as_of: date) -> dic
         # Validate both render branches before any child outputs change.
         page_report(project_dir, project, scope, as_of)
         edm_html(project, as_of, project_dir)
+    if task == 'edm-series':
+        series_path = out/'series-review.json'
+        old_series = load_json(series_path) if series_path.is_file() else None
+        series_report, series_pages = build_series(project_dir, project, as_of, old_series)
     out.mkdir(parents=True, exist_ok=True)
     marker = out / 'run.json'
     previous = load_json(marker) if marker.is_file() else None
@@ -81,6 +86,17 @@ def run(task: str, project_dir: Path, out: Path, scope: str, as_of: date) -> dic
         report, page = edm_html(project, as_of, project_dir)
         write_json(out / 'edm-check.json', report)
         (out / 'email.html').write_text(page, encoding='utf-8')
+    elif task == 'edm-series':
+        report = series_report
+        write_json(out/'series-review.json', report)
+        for name, content in series_pages.items():
+            path = safe_path(out, name)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(content, encoding='utf-8')
+        write_csv(out/'series-matrix.csv', report['emails'], ['id','stage','audience','purpose','purchase_reason','planned_for','status'])
+        write_csv(out/'human-review.csv', [dict(i, project_id=project['project_id'], source_ids=';'.join(i['source_ids']),
+                  blockers=';'.join(i['blockers']), decision='', reviewer='', reviewed_at='', evidence_checked='') for i in report['review_items']],
+                  ['project_id','item_id','category','field','value','source_ids','status','blockers','fingerprint','decision','reviewer','reviewed_at','evidence_checked'])
     elif task == 'launch':
         run('content', project_dir, out/'content', scope, as_of)
         run('edm', project_dir, out/'edm', 'full', as_of)
@@ -130,10 +146,18 @@ def run(task: str, project_dir: Path, out: Path, scope: str, as_of: date) -> dic
               'publication_ready': False, 'input_files_modified': False, 'network_calls': 0,
               'browser_qa': 'NOT_RUN_BY_RUNTIME', 'ai_image_generation': 'NOT_IMPLEMENTED'}
     write_json(marker, result)
-    if task in {'content', 'edm'}:
+    if task in {'content', 'edm', 'edm-series'}:
         write_json(out/'scoped-review.json', {'project_id': project['project_id'], 'items': report['review_items'],
                                              'publication_ready': False})
-    (out/'HANDOFF.md').write_text('# Next session\n\nRead AGENTS.md and this output’s context.json, truth-check.json and run.json.\n\nTask: '+task+'\nProject: '+project['project_id']+'\nNext: '+context['next_action']+'\n\nDo not upgrade draft claims, missing images, source changes or test success into approval.\n',encoding='utf-8')
+    review_handoff = ''
+    if task == 'edm-series':
+        summary = report['review_summary']
+        review_handoff = ('\nRead series-review.json and scoped-review.json before resuming.\n'
+            + 'Stale reviews: ' + str(summary['stale_review_count'])
+            + '\nAffected emails: ' + (', '.join(summary['stale_email_ids']) or 'none')
+            + '\nPending reviews: ' + str(summary['pending_review_count'])
+            + '\nNo new changes does not restore invalidated approvals.\n')
+    (out/'HANDOFF.md').write_text('# Next session\n\nRead AGENTS.md and this output’s context.json, truth-check.json and run.json.\n\nTask: '+task+'\nProject: '+project['project_id']+'\nNext: '+context['next_action']+'\n'+review_handoff+'\nDo not upgrade draft claims, missing images, source changes or test success into approval.\n',encoding='utf-8')
     return result
 
 

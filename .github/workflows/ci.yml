@@ -27,4 +27,7 @@ jobs:
       - run: python scripts/demo_launch.py
       - run: python scripts/demo_launch.py
       - run: python scripts/verify_nochange.py --launch
+      - run: python scripts/demo_edm_series.py
+      - run: python scripts/demo_edm_series.py
+      - run: python scripts/verify_nochange.py --launch --series
       - run: python scripts/build_release.py --dest ../public-export-check --zip ../release-candidate.zip

@@ -34,11 +34,11 @@ python scripts/bootstrap_github.py --repo YOUR_OWNER/marketing-ai-skills-kit --d
 6. `python scripts/build_release.py --dest ../clean-export-vNEXT`。任何 Hash 不同即拒绝导出。
 7. 在发行仓库走 PR、CI；通过真人试用、权利与公开审核后，再由明确授权的维护者创建固定版本 Tag/Release。用户按版本更新，然后重跑 install.py。本次候选不会自动发布。
 
-## v0.2.0-rc1 候选包
+## v0.2.0-rc2 候选包
 
 ```bash
 python scripts/lock_distribution.py --check
-python scripts/build_release.py --dest ../clean-export-v0.2.0-rc1 --zip ../marketing-ai-skills-kit-0.2.0-rc1.zip
+python scripts/build_release.py --dest ../clean-export-v0.2.0-rc2 --zip ../marketing-ai-skills-kit-0.2.0-rc2.zip
 ```
 
 生成 ZIP 与 `.zip.sha256`；导出目录和压缩包必须未存在。ZIP 只含白名单字节，排序、时间戳和权限固定。`kit.json` 是版本源；runtime、运行回执与 manifest 应一致。构建成功只表示本地候选生成，不代表已有 GitHub Release、试用通过或允许 Public。

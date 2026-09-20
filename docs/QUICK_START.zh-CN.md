@@ -32,6 +32,8 @@ python scripts/run.py --task content --scope aplus --project examples/demo-proje
 
 ## 真实项目
 
+系列 EDM 试跑：`python scripts/demo_edm_series.py`，打开 `outputs/edm-series-demo/edm-series/review.html`。三封架空邮件展示独立正文和共用 Footer；后两封故意缺少完整主题备选，以演示待补项。实际使用让 `$jp-edm` 根据你的授权资料整理系列计划，再运行 `--task edm-series`。改动后重复运行同输出目录，查看 `series-review.json` 的 impact；不会发送邮件。
+
 将 `config/brand.example.json` 复制为 `config/brand.local.json`，填写品牌名、公司名和市场。
 
 ```bash

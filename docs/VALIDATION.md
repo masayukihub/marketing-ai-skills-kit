@@ -11,6 +11,9 @@ python scripts/demo.py
 python scripts/verify_nochange.py
 python scripts/demo_launch.py
 python scripts/demo_launch.py
+python scripts/demo_edm_series.py
+python scripts/demo_edm_series.py
+python scripts/verify_nochange.py --launch --series
 python scripts/lock_distribution.py --check
 python scripts/build_release.py --dest ../clean-export-test
 ```

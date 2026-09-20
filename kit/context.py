@@ -9,7 +9,7 @@ from .common import digest, safe_path
 TASK_FILES = {
     'insights': ['reviews.csv', 'competitors.csv'],
     'content': [], 'campaign': ['campaign.csv'],
-    'edm': [], 'influencer': ['creators.csv'], 'launch': [],
+    'edm': [], 'edm-series': [], 'influencer': ['creators.csv'], 'launch': [],
 }
 
 def snapshot(root: Path, project: dict, task: str) -> dict:
@@ -20,6 +20,16 @@ def snapshot(root: Path, project: dict, task: str) -> dict:
     core_ids = {f.get('source_id') for f in project.get('facts', [])}
     core_ids.update(c.get('source_id') for c in project.get('claims', []))
     core_ids.update(s for c in project.get('candidate_context', []) for s in c.get('source_ids', []))
+    if task == 'edm-series':
+        series = project.get('edm_series', {})
+        used = {m for email in series.get('emails', []) for m in email['module_ids']}
+        for module in series.get('modules', []):
+            if module['id'] not in used:
+                continue
+            core_ids.add(module.get('inheritance', {}).get('source_id'))
+            if module.get('asset_path'):
+                files.add(module['asset_path'])
+        files.update(v['path'] for v in series.get('visuals', []) if v.get('path'))
     files.update(s['path'] for s in project.get('sources', []) if s['id'] in core_ids)
     if task in {'content', 'launch'}:
         files.update(u['asset_path'] for u in project.get('page_units', []) if u.get('asset_path'))
@@ -42,12 +52,13 @@ def resolve(project: dict, task: str, as_of: date) -> dict:
         elapsed = (as_of - date.fromisoformat(raw)).days
         freshness = 'unknown' if elapsed < 0 else 'current' if elapsed <= state.get('freshness_days', 30) else 'stale'
     blockers = state.get('blockers', [])
+    aliases = {'edm'} if task == 'edm-series' else {'content', 'edm'} if task == 'launch' else set()
     scoped = [b for b in blockers if isinstance(b, str) or (b.get('status', 'open') != 'resolved' and
-              (not b.get('tasks') or task in b['tasks'] or (task == 'launch' and set(b['tasks']) & {'content', 'edm'})))]
+              (not b.get('tasks') or task in b['tasks'] or set(b['tasks']) & aliases))]
     active_ids = {b['id'] for b in blockers if isinstance(b, dict) and b.get('status', 'open') != 'resolved'}
     actions = []
     for action in state.get('next_actions', []):
-        if action.get('tasks') and task not in action['tasks'] and not (task == 'launch' and set(action['tasks']) & {'content', 'edm'}):
+        if action.get('tasks') and task not in action['tasks'] and not set(action['tasks']) & aliases:
             continue
         safe = action.get('kind') in {'audit', 'source_refresh', 'review_preparation'}
         reasons = []

@@ -28,6 +28,7 @@ Run `python3 scripts/doctor.py` once on first use. Use `scripts/run.py` for dete
 Use a distinct `outputs/<project>/<task>/` for each project/task. Real input goes in ignored `projects/`; never overwrite bundled examples with private data.
 Long inputs/logs stay in files. Return key results and output paths. At a task boundary use the generated `HANDOFF.md` plus `context.json`, not the entire old conversation.
 The launch task composes existing content and edm outputs from one project. Intake goes into unverified candidate_context, never automatically into confirmed facts or approved claims. Read docs/REVIEW_AND_RESUME.md when recording explicit human decisions or resuming changed artifacts. Approval applies only to its exact scoped fingerprint and does not authorize publication.
+EDM series uses the same jp-edm entry and optional edm_series project data. Preserve stable module IDs and scope local revisions. Inheritance is structural only; shared-footer changes affect all referencing emails. Comments are review proposals, never execution or approval authority.
 
 ## Human boundaries
 No emails, posts, uploads, tracking links, formal source writeback or public repository visibility changes without explicit authorization. Keep source material read-only.

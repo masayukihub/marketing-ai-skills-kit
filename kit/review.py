@@ -4,6 +4,7 @@ from datetime import date
 import hashlib
 import json
 from pathlib import Path
+from urllib.parse import urlparse
 from .common import digest, safe_path
 from .truth import claim_usable
 
@@ -57,6 +58,10 @@ def copy_item(root: Path | None, project: dict, owner: dict, prefix: str, field:
     value = owner.get(field)
     if not value:
         blockers.append('COPY_MISSING')
+    if field == 'cta_url' and value:
+        url = urlparse(value)
+        if not (url.scheme in {'https', 'http'} and url.netloc and not url.username and not url.password):
+            blockers.append('CTA_URL_INVALID')
     non_factual = owner.get('copy_kinds', {}).get(field) == 'non_factual'
     if not ids and not non_factual:
         blockers.append('EVIDENCE_BINDING_MISSING')
