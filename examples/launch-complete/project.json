@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "project_id": "launch-complete",
+  "aliases": ["Luma Demo", "桌灯演示"],
+  "synthetic": true,
+  "market": "JP",
+  "brand": {"name": "Luma Demo", "company_name": "Luma Demo — fictional"},
+  "product": {"id": "lamp-demo", "name": "Luma デスクライト（架空）"},
+  "sources": [{"id": "SRC-TEXT", "path": "source.md", "kind": "synthetic", "status": "fixture"}],
+  "facts": [
+    {"id": "F-HEIGHT", "field": "height_mm", "value": 320, "status": "confirmed", "source_id": "SRC-TEXT", "evidence_location": "Textual fixture definition"},
+    {"id": "F-LEVELS", "field": "brightness_levels", "value": 3, "status": "confirmed", "source_id": "SRC-TEXT", "evidence_location": "Textual fixture definition"}
+  ],
+  "claims": [
+    {"id": "C-HEIGHT", "text": "高さ32cm。置き場所を測って選べます。", "fact_ids": ["F-HEIGHT"], "source_id": "SRC-TEXT", "status": "demo_only", "market": "JP"},
+    {"id": "C-LEVELS", "text": "明るさは3段階から選択。", "fact_ids": ["F-LEVELS"], "source_id": "SRC-TEXT", "status": "demo_only", "market": "JP"}
+  ],
+  "candidate_context": [{"information_type": "RECOMMENDATION", "text": "先解释摆放条件，再展示亮度选择。", "source_ids": ["SRC-TEXT"], "status": "pending"}],
+  "state": {
+    "state_as_of": "2026-09-20", "freshness_days": 30,
+    "blockers": [{"id": "ASSETS", "text": "未提供正式图片：本例为文本资料完整，不是视觉成品。", "tasks": ["content"]}],
+    "next_actions": [{"id": "REVIEW-TEXT", "text": "审阅页面顺序与日语候选文案。", "kind": "review_preparation", "priority": "p0", "tasks": ["content", "edm"], "blocked_by": []}]
+  },
+  "page_units": [
+    {"id": "G01", "section": "gallery", "consumer_question": "置き場所に合う？", "headline": "高さ32cmのデスクライト。", "support": "購入前に置き場所を測って確認。", "claim_ids": ["C-HEIGHT"], "visual_proof": "Rights-cleared product photo with a verified height guide; not an invented room-scale claim.", "asset_path": null, "asset_rights": "not_provided"},
+    {"id": "A01", "section": "aplus", "consumer_question": "明るさは選べる？", "headline": "明るさは3段階。", "support": "操作方法は説明書と合わせて確認。", "claim_ids": ["C-LEVELS"], "visual_proof": "Use a verified controls photo; do not imply tested eye-comfort performance.", "asset_path": null, "asset_rights": "not_provided"}
+  ],
+  "edm": {"subject": "デスクライトを、置き場所から選ぶ。", "preheader": "高さと明るさの選択肢を確認。", "headline": "置く前に、サイズを確認。", "body": "高さ32cm、明るさは3段階。", "claim_ids": ["C-HEIGHT", "C-LEVELS"], "cta_label": "詳しく見る", "cta_url": "https://example.com/lamp-demo", "copy_kinds": {"cta_label": "non_factual", "cta_url": "non_factual"}},
+  "reviews": []
+}

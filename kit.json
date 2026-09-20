@@ -1,6 +1,6 @@
 {
   "name": "marketing-ai-skills-kit",
-  "version": "0.1.0-rc2",
+  "version": "0.2.0-rc2",
   "python": ">=3.10",
   "skills": [
     "jp-commerce-insights",
@@ -16,6 +16,9 @@
     "kit/reviews.py",
     "kit/operations.py",
     "kit/creative.py",
+    "kit/review.py",
+    "kit/launch.py",
+    "kit/email_series.py",
     "scripts/run.py"
   ],
   "local_file_adapter": true,

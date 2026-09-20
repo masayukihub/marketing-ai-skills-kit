@@ -5,10 +5,18 @@ import hashlib
 import json
 import math
 import re
+import sys
 from pathlib import Path
 from typing import Any
 
 MAX_BYTES = 5_000_000
+
+def reject_symlinks(path: Path) -> None:
+    for p in [path, *path.parents]:
+        # Standard macOS filesystem aliases are not user-controlled redirects.
+        system_alias = sys.platform == 'darwin' and p in {Path('/var'), Path('/tmp'), Path('/etc')} and p.resolve() == Path('/private') / p.name
+        if p.is_symlink() and not system_alias:
+            raise ValueError('Symlink path is not allowed')
 
 def safe_path(root: Path, name: str) -> Path:
     root = root.resolve()
@@ -18,7 +26,7 @@ def safe_path(root: Path, name: str) -> Path:
     if rel.is_absolute() or '..' in rel.parts:
         raise ValueError('Path traversal is not allowed')
     path = root / rel
-    if path.is_symlink() or not path.resolve().is_relative_to(root):
+    if any(p.is_symlink() for p in [path, *path.parents] if p != root and p.is_relative_to(root)) or not path.resolve().is_relative_to(root):
         raise ValueError('Symlink or escaped local path')
     return path
 

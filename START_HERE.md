@@ -2,6 +2,8 @@
 
 ## 只想先看看
 
+新品首选：`python scripts/demo_launch.py`，打开 `outputs/launch-complete/launch/review.html`。使用自己的资料时，让 Codex 按 `docs/TASK_CARDS.md` 引导输入；不要把 demo 改成真实项目。
+
 已有 Python 3.10+：运行 `python scripts/demo.py`。打开 `outputs/demo-project/content/review.html`。
 没有 Python：需要先安装 Python。这个工具包不自动安装系统软件，也不更改你的账户配置。
 

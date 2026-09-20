@@ -11,7 +11,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def sha(data): return hashlib.sha256(data).hexdigest()
 
 def install(root:Path,check:bool=False)->list[str]:
-    results=[]
+    results=[];pending=[]
     for directory in sorted((root/'skills').iterdir()):
         if not directory.is_dir(): continue
         target=root/'.agents/skills'/directory.name
@@ -20,6 +20,7 @@ def install(root:Path,check:bool=False)->list[str]:
         incoming=(directory/'SKILL.md').read_bytes()
         marker=target/'.kit-sha256'
         existing=target/'SKILL.md'
+        if marker.is_symlink() or existing.is_symlink():raise ValueError('Unsafe skill mirror file')
         if existing.exists():
             old=existing.read_bytes()
             if old!=incoming and (not marker.is_file() or marker.read_text().strip()!=sha(old)):
@@ -27,11 +28,14 @@ def install(root:Path,check:bool=False)->list[str]:
         if check:
             if not existing.is_file() or existing.read_bytes()!=incoming: raise ValueError('Skill mirror not installed or stale: '+directory.name)
         else:
-            target.mkdir(parents=True,exist_ok=True)
-            existing.write_bytes(incoming)
-            marker.write_text(sha(incoming)+'\n')
+            pending.append((target,existing,marker,incoming))
         results.append(directory.name)
     if not results: raise ValueError('No skills found')
+    # Preflight every Skill before updating any: one local conflict leaves all unchanged.
+    for target,existing,marker,incoming in pending:
+        target.mkdir(parents=True,exist_ok=True)
+        existing.write_bytes(incoming)
+        marker.write_text(sha(incoming)+'\n')
     return results
 
 if __name__=='__main__':

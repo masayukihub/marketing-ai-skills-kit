@@ -5,3 +5,5 @@ if command -v python3 >/dev/null 2>&1; then PY=python3; elif command -v python >
 "$PY" "$ROOT/scripts/install.py"
 "$PY" "$ROOT/scripts/doctor.py"
 "$PY" "$ROOT/scripts/demo.py"
+"$PY" "$ROOT/scripts/demo_launch.py"
+"$PY" "$ROOT/scripts/demo_edm_series.py"

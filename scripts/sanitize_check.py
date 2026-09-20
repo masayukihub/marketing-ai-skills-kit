@@ -19,7 +19,7 @@ PATTERNS={
  'TENANT_DOCUMENT':r'https?://[^/\s]+\.(?:feishu\.cn|larksuite\.com)/(?:docx|wiki|base|drive)/[A-Za-z0-9]+',
  'SIGNED_URL':r'(?i)[?&](?:X-Amz-Signature|access_token|refresh_token|sig)=[A-Za-z0-9%_-]{12,}',
 }
-BLOCKED_PARTS={'.git','private-runtime','node_modules','.venv','__pycache__','.agents'}
+BLOCKED_PARTS={'.git','private','private-runtime','raw-private','secrets','local-logs','logs','output','outputs','projects','.kit-backups','.playwright-cli','node_modules','.venv','__pycache__','.agents'}
 TEXT_SUFFIXES={'.md','.py','.json','.yaml','.yml','.txt','.sh','.ps1','.csv','.html','.css','.toml','.example'}
 ALLOWED_NAMES={'LICENSE','NOTICE','.gitignore','.gitattributes'}
 
@@ -28,10 +28,11 @@ def findings(root:Path,paths:list[str],extra_patterns:list[str]|None=None)->list
  compiled += [('PRIVATE_POLICY_'+str(i),re.compile(p,re.I)) for i,p in enumerate(extra_patterns or [])]
  for name in paths:
   rel=Path(name)
-  if rel.is_absolute() or '..' in rel.parts or set(rel.parts)&BLOCKED_PARTS or name=='.env':
+  folded_parts={part.casefold() for part in rel.parts}
+  if rel.is_absolute() or '..' in rel.parts or '\\' in name or ':' in name or folded_parts&BLOCKED_PARTS or any(part=='.env' or (part.startswith('.env.') and part!='.env.example') for part in folded_parts) or rel.suffix.casefold()=='.log' or rel.name.casefold()=='brand.local.json':
    errors.append({'path':name,'rule':'DISALLOWED_PATH'});continue
   path=root/rel
-  if path.is_symlink() or not path.resolve().is_relative_to(root.resolve()) or not path.is_file():
+  if any(p.is_symlink() for p in [path,*path.parents] if p != root and p.is_relative_to(root)) or not path.resolve().is_relative_to(root.resolve()) or not path.is_file():
    errors.append({'path':name,'rule':'UNSAFE_OR_MISSING_FILE'});continue
   if path.stat().st_size>1_500_000:
    errors.append({'path':name,'rule':'FILE_TOO_LARGE'});continue
