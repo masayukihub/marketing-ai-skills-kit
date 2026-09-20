@@ -2,7 +2,30 @@
 
 **面向营销、电商与代理团队的本地优先 AI 工作流工具包。**
 
-版本：`0.1.0-rc2` · 默认市场：日本 · 解释语言：中文 · 消费者文案：日语
+版本：`0.2.0-rc1` · 默认市场：日本 · 解释语言：中文 · 消费者文案：日语
+
+## 新品内容：一个资料源，一份审核包
+
+面向会用 Codex 的营销人。本版将现有 Amazon 内容与 EDM 串为一条本地流程，不新增第六个 Skill：
+
+**用户资料 → 候选事实/假设/建议/缺口 → Amazon 页面规划 + EDM 草稿 → 统一 Human Review**
+
+```bash
+python scripts/demo_launch.py
+```
+
+打开 `outputs/launch-complete/launch/review.html`。另外两个案例展示资料缺失与来源冲突。三者均为虚构数据；“资料完整”指文本证据齐全，不代表已提供正式图片或取得任何批准。
+
+在 Codex 中打开整个仓库，然后说：
+
+```text
+使用 $jp-commerce-content，按 docs/TASK_CARDS.md 的新品任务卡处理我的本地资料。
+目标是 Amazon Japan 页面规划和一封新品 EDM。
+先整理候选事实、假设、建议和缺口，保留来源，不自动批准事实或 Claim。
+输出一个中文审核首页、日语内容草稿与下一步；缺图保留明确占位。
+```
+
+[新品任务卡](docs/TASK_CARDS.md) · [审核与继续](docs/REVIEW_AND_RESUME.md) · [三套案例](examples/LAUNCH_CASES.md) · [真人试用说明](docs/PILOT.md)
 
 不是某家品牌的工作空间副本，也不是一包只有提示词的目录。它包含 **5 个任务 Skill、4 个方法模块、可执行 Python 处理流程、虚构 Demo、审阅 HTML 和测试**。
 
@@ -61,6 +84,8 @@ Demo 不连接账号、不发送数据、不调用模型 API。打开 `outputs/d
 | 五类任务的本地数据处理与草稿输出 | 已实现，可测试 |
 | Agent 按 Skill 进行策略判断和文案创作 | 需要用户的宿主 Agent；不内置模型客户端 |
 | 本地来源变更检测、下次会话 Handoff | 已实现，不自动批准记忆 |
+| 新品统一审核包、精确别名、分任务 Next Action | 已实现；只生成内部审核稿 |
+| 自由文案逐字段审核、Hash 绑定的局部审批失效 | 已实现；语义与证据真实性仍需人工 |
 | HTML 草稿与文案/图片检查清单 | 已实现 |
 | AI 产品图或场景图生成 | 未捆绑；需单独接入工具 |
 | Amazon / 乐天 / Yahoo 实时抓评论 | 未捆绑；接受合法取得的本地文件 |
@@ -90,6 +115,8 @@ Product Truth 与 Claim 分离；Gallery 与 A+ 分工；品牌承诺与产品�
 - `scripts/build_release.py`：仅导出审查过的文件，不复制 Git 历史。
 - `scripts/bootstrap_github.py`：在本机经认证的 GitHub CLI 下建立**全新私有模板仓库**。
 - `scripts/sanitize_check.py`：模式扫描，不能替代人工保密与权利审查。
+- `distribution/allowlist.txt`：维护者明确列出的可发行文件；未跟踪文件与日志不能自动加入。
+- `scripts/update.py`：校验固定版本 ZIP 和 SHA-256，预览升级/回滚，保护用户修改和数据。
 - `LICENSE`：本次新编写的代码、文字和合成示例使用 MIT；不授予任何第三方/雇主资产的权利。
 
 ## 文档

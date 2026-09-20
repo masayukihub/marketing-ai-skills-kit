@@ -17,10 +17,14 @@ jobs:
           python-version: ${{ matrix.python }}
       - run: python scripts/doctor.py
       - run: python scripts/sanitize_check.py
+      - run: python scripts/lock_distribution.py --check
       - run: python -m unittest discover -s tests -v
       - run: python scripts/install.py
       - run: python scripts/install.py --check
       - run: python scripts/demo.py
       - run: python scripts/demo.py
       - run: python scripts/verify_nochange.py
-      - run: python scripts/build_release.py --dest ../public-export-check
+      - run: python scripts/demo_launch.py
+      - run: python scripts/demo_launch.py
+      - run: python scripts/verify_nochange.py --launch
+      - run: python scripts/build_release.py --dest ../public-export-check --zip ../release-candidate.zip

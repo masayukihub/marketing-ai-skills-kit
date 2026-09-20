@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0", "project_id": "launch-conflict", "synthetic": true, "market": "JP",
+  "brand": {"name": "Luma Demo", "company_name": "Luma Demo — fictional"},
+  "product": {"id": "lamp-conflict", "name": "デスクライト（架空・仕様不一致）"},
+  "sources": [{"id": "SRC-A", "path": "source-a.md", "kind": "synthetic", "status": "draft"}, {"id": "SRC-B", "path": "source-b.md", "kind": "synthetic", "status": "draft"}],
+  "facts": [{"id": "F-HEIGHT", "field": "height_mm", "value": null, "status": "conflict", "source_id": "SRC-A", "alternatives": [{"value": 300, "source_id": "SRC-A"}, {"value": 350, "source_id": "SRC-B"}]}],
+  "claims": [{"id": "C-HEIGHT", "text": "高さの情報は確認中です。", "fact_ids": ["F-HEIGHT"], "source_id": "SRC-A", "status": "draft", "market": "JP"}],
+  "candidate_context": [{"information_type": "FACT", "text": "两个来源的高度不一致，不能默认采用较新文件。", "source_ids": ["SRC-A", "SRC-B"], "status": "conflict"}, {"information_type": "HYPOTHESIS", "text": "可能属于不同版本，尚无证据确认。", "source_ids": ["SRC-A", "SRC-B"], "status": "unverified"}],
+  "state": {"state_as_of": "2026-08-01", "freshness_days": 7, "blockers": [{"id": "SPEC-CONFLICT", "text": "Height conflict unresolved", "tasks": ["content", "edm"]}], "next_actions": [{"id": "AUDIT", "text": "提交 Source A / B 冲突给人工核实。", "kind": "audit", "priority": "p0", "tasks": ["content", "edm"], "blocked_by": []}, {"id": "PRODUCE", "text": "正式内容制作", "kind": "execution", "priority": "p1", "tasks": ["content"], "blocked_by": ["SPEC-CONFLICT"]}]},
+  "page_units": [{"id": "G01", "section": "gallery", "consumer_question": "高さは？", "headline": "高さは確認中です。", "support": "寸法が確定するまで判断を保留。", "claim_ids": ["C-HEIGHT"], "visual_proof": "Do not draw a dimension before the conflict is resolved", "asset_rights": "not_provided"}, {"id": "A01", "section": "aplus", "consumer_question": "何が未確認？", "headline": "仕様の相違を確認中。", "support": "正式情報を確認してください。", "claim_ids": ["C-HEIGHT"], "visual_proof": "No fabricated specification graphic", "asset_rights": "not_provided"}],
+  "edm": {"subject": "製品仕様を確認中", "preheader": "未確認の寸法は掲載しません。", "headline": "仕様を確認しています。", "body": "高さは未確定です。", "claim_ids": ["C-HEIGHT"], "cta_label": "詳しく見る", "cta_url": null},
+  "reviews": []
+}

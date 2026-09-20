@@ -18,6 +18,7 @@ Read this file, `kit.json`, and exactly one task Skill. Do not load every refere
 | --- | --- |
 | Research / VOC | `skills/jp-commerce-insights/SKILL.md` |
 | Gallery / A+ / brand / comparison | `skills/jp-commerce-content/SKILL.md` |
+| 新品 Amazon + EDM 统一审核包 | 同一个 `jp-commerce-content` 入口；`docs/TASK_CARDS.md` |
 | GTM / campaign / metrics | `skills/jp-marketing-campaign/SKILL.md` |
 | EDM | `skills/jp-edm/SKILL.md` |
 | KOL | `skills/influencer-marketing/SKILL.md` |
@@ -26,7 +27,9 @@ Read this file, `kit.json`, and exactly one task Skill. Do not load every refere
 Run `python3 scripts/doctor.py` once on first use. Use `scripts/run.py` for deterministic operations; then perform the requested reasoning and copy refinement in the host agent. Core scripts do not call an LLM.
 Use a distinct `outputs/<project>/<task>/` for each project/task. Real input goes in ignored `projects/`; never overwrite bundled examples with private data.
 Long inputs/logs stay in files. Return key results and output paths. At a task boundary use the generated `HANDOFF.md` plus `context.json`, not the entire old conversation.
+The launch task composes existing content and edm outputs from one project. Intake goes into unverified candidate_context, never automatically into confirmed facts or approved claims. Read docs/REVIEW_AND_RESUME.md when recording explicit human decisions or resuming changed artifacts. Approval applies only to its exact scoped fingerprint and does not authorize publication.
 
 ## Human boundaries
 No emails, posts, uploads, tracking links, formal source writeback or public repository visibility changes without explicit authorization. Keep source material read-only.
 Changes to this kit require tests and a refreshed distribution manifest. Do not bypass the scanner or amend tests just to make a release pass.
+Only files explicitly listed in distribution/allowlist.txt and reviewed in Git may enter a new release. Do not copy private upstream mappings or company sources. Updates are pinned, local, dry-run-first; never overwrite user modifications or project data. Human pilot records cannot be simulated as completed.

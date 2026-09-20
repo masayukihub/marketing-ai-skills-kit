@@ -39,3 +39,12 @@ CSV 输出防止以 =、+、-、@ 开始的字符串被表格程序当公式；�
 合法取得文件后，可登记到 sources 使用。不需要、也不要把账号凭据写入项目 JSON。
 
 可选 `review_themes`：例如 `{"操作": ["設定", "ボタン"]}`。它会替换默认主题词典，便于不同品类复用；仍然不是自动语义或情绪判断。
+# v0.2 optional additions (schema 1.0 remains supported)
+
+- `aliases`: exact project routing names, not official public names.
+- `candidate_context`: entries with information_type FACT/HYPOTHESIS/RECOMMENDATION/GAP, text, source_ids, and status unverified/pending/conflict. Extraction cannot approve facts or claims.
+- `edm.body`, `edm.claim_ids`: candidate body and optional selected Claims. Without claim_ids, the previous all-claims selection remains compatible.
+- `field_claim_ids`: per-copy-field Claim ID arrays; `copy_kinds`: explicit factual/non_factual classification. No classification bypasses human review.
+- `reviews`: explicit human receipts binding project_id/item_id/fingerprint/decision/reviewer/reviewed_at/evidence_checked. See [review rules](REVIEW_AND_RESUME.md); runtime never generates a positive decision.
+- `state.next_actions`: scoped p0/p1/p2 actions, dependencies and human requirements. Legacy next_action remains readable but cannot cause automatic execution of stale state.
+- Source `status` and optional valid_from/valid_to constrain Claim availability. Conflict/outdated/retracted/unverified/unknown/draft sources cannot support a usable claim. Approved fact and external Claim remain separate.

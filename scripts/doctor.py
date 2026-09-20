@@ -18,6 +18,7 @@ def doctor(root:Path)->dict:
     try:load_project(root/'examples/demo-project')
     except (OSError,ValueError,TypeError,KeyError) as exc:issues.append('DEMO_INVALID:'+str(exc))
     return {'status':'LOCAL_RUNTIME_READY' if not issues else 'BLOCKED','issues':issues,
+            'kit_version':config['version'],
             'skills':len(config['skills']),'required_python_packages':[],
             'local_file_adapter':'READY','codex_cli_detected':bool(shutil.which('codex')),
             'codex_runtime_e2e':'NOT_TESTED_BY_DOCTOR','live_web_collection':'NOT_BUNDLED',

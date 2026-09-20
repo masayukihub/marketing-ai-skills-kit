@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0", "project_id": "launch-missing", "synthetic": true, "market": "JP",
+  "brand": {"name": "Luma Demo", "company_name": "Luma Demo — fictional"},
+  "product": {"id": "lamp-pending", "name": "デスクライト（架空・詳細未確認）"},
+  "sources": [{"id": "SRC-BRIEF", "path": "brief.md", "kind": "synthetic", "status": "fixture"}],
+  "facts": [{"id": "F-PRICE", "field": "price", "value": null, "status": "unknown"}],
+  "claims": [],
+  "candidate_context": [{"information_type": "GAP", "text": "规格、价格、上市日期和素材待确认。", "source_ids": ["SRC-BRIEF"], "status": "unverified"}],
+  "state": {"state_as_of": null, "freshness_days": 30, "blockers": ["Evidence missing", "Assets missing"], "next_actions": [{"id": "SOURCE-REVIEW", "text": "补齐来源并整理需要人工确认的字段。", "kind": "source_refresh", "priority": "p0", "tasks": ["content", "edm"], "blocked_by": []}]},
+  "page_units": [{"id": "G01", "section": "gallery", "consumer_question": "どんな製品？", "headline": "製品情報は確認中です。", "support": "詳細な仕様は未確認です。", "claim_ids": [], "visual_proof": "Official assets required", "asset_rights": "not_provided"}],
+  "edm": {"subject": "製品情報を確認中", "preheader": "仕様・発売日は未確認です。", "headline": "詳細情報を準備中です。", "body": null, "cta_label": "詳しく見る", "cta_url": null},
+  "reviews": []
+}

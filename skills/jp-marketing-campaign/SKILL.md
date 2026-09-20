@@ -15,6 +15,7 @@ Read repository AGENTS.md and `project.json`. Only load `modules/project-context
 4. 使用本地脚本算比率；币种、税口径、归因窗、周期不一致时报错，不混算。
 5. 区分规模和效率，相关性不当因果；ROAS 不写成利润 ROI。
 6. 给出继续/调整/停止/测试建议，附依据、Owner、截止条件与成功指标；不要自动发短链或写平台。
+7. 用户要的是新品 Amazon+EDM 内容交付时，按根目录 `docs/TASK_CARDS.md` 运行 launch 组合任务；Campaign 指标仍使用 campaign，不把二者混为相同输出。项目续做按运行时 freshness 和 Next Action，不自动执行发布或解除 Blocker。
 
 ## Runnable local step
 Run from the kit root (replace project/output with the user's separate local directories):

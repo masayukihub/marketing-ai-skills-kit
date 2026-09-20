@@ -16,6 +16,7 @@ Read repository AGENTS.md and `project.json`. Only load `modules/product-truth/C
 5. 运行本地表格布局 HTML。它是可查看的草稿，不是已经做过 ESP 兼容验证的成品。
 6. 发送前补齐公司地址、真实退订绑定、名单同意、链接、Client QA、人工批准。
 7. 本包不会发信；send_ready=false 不可用测试通过来绕过。
+8. headline、subject、preheader、body 和 CTA 都属于候选审核范围。已有用户决定按 `docs/REVIEW_AND_RESUME.md` 绑定确切版本，不从其他模块继承批准。需要 Amazon + EDM 整体新品审核时，在同一项目运行 `scripts/run.py --task launch`；不要另外复制产品事实。
 
 ## Runnable local step
 Run from the kit root (replace project/output with the user's separate local directories):

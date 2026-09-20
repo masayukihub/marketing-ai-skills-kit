@@ -52,3 +52,12 @@ python scripts/new_project.py --id my-product --brand-file config/brand.local.js
 - `Output belongs to another project/task`：给当前项目/任务换独立输出目录。
 - `UNREVIEWED_CHANGE`：发行白名单与文件不同；先审核差异，再显式更新白名单。
 - `NOT_REVIEWED / ASSET_NOT_READY`：是正确的未审核/缺素材状态，不要改成 PASS。
+# 新品组合流程（v0.2）
+
+先运行 `python scripts/demo_launch.py`，打开 `outputs/launch-complete/launch/review.html`。用同一个入口比较 launch-missing 与 launch-conflict，理解不确定信息的呈现方式。
+
+在 Codex 中打开完整仓库，用 [新品任务卡](TASK_CARDS.md) 提供目标和本地文件；Agent 协助建立项目、登记来源和编写候选，不需要你先手填整个 JSON。先完成来源复核，再使用 `python scripts/run.py --task launch --project projects/my-launch --out outputs/my-launch/launch`。
+
+这是内部审核包，不是 Amazon 上传包或可发送邮件。缺图仍会显著显示；本地 Python 不调用模型，策略/文案由宿主 Codex 完成。模型服务有自己的账户、费用和数据处理规则。
+
+后续使用精确项目别名继续；审核决定按 [审核与续做](REVIEW_AND_RESUME.md) 记录。固定版本更新和回滚见 [发布说明](RELEASING.md)。
